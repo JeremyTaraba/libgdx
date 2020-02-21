@@ -14,7 +14,17 @@
  * limitations under the License.
  ******************************************************************************/
 
+
+
+plugins {
+    id 'java'
+    id 'jacoco'
+    id "com.vanniktech.android.junit.jacoco" version "0.15.0"
+}
+
+
 apply from: "gradle/dependencies.gradle"
+
 
 
 allprojects {
@@ -28,6 +38,7 @@ allprojects {
             mavenCentral()
             maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         }
+        
     }
 
     repositories {
@@ -37,6 +48,25 @@ allprojects {
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
     }
 }
+
+dependencies {
+    testCompile "junit:junit:4.+"
+}
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled true
+        xml.enabled false
+        csv.enabled false
+    }
+}
+
+
 
 configure(subprojects - project(":tests:gdx-tests-android")) {
     apply plugin: "idea"

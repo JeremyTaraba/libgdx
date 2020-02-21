@@ -15,6 +15,7 @@
  ******************************************************************************/
 
 apply plugin: "java"
+apply plugin: "jacoco"
 
 sourceCompatibility = 1.6
 targetCompatibility = 1.6
@@ -27,6 +28,21 @@ compileJava {
     options.fork = true
     options.incremental = true
 }
+
+jacoco {
+    toolVersion = "0.8.5"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+    reports {
+        html.enabled true
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
 
 dependencies {
     compileOnly project(":extensions:gdx-jnigen")
