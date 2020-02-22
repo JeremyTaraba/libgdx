@@ -98,6 +98,13 @@ public class Ray implements Serializable {
 		return this;
 	}
 
+	public Vector3 getOrigin(){
+		return this.origin;
+	}
+	public Vector3 getDirection(){
+		return this.direction;
+	}
+
 	/** Sets the starting position and direction from the given ray
 	 * 
 	 * @param ray The ray
@@ -120,6 +127,8 @@ public class Ray implements Serializable {
 	public int hashCode () {
 		final int prime = 73;
 		int result = 1;
+
+		//why is result being set based on direction and then set again on origin, this overrides it??
 		result = prime * result + this.direction.hashCode();
 		result = prime * result + this.origin.hashCode();
 		return result;
