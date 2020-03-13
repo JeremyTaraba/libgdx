@@ -83,12 +83,27 @@ public class BoundingBoxTest {
 
 	@Test
 	public void testGetCorners(){
-		BoundingBox b1 = new BoundingBox(new Vector3(4, 4, 4), Vector3.Zero);
-		Vector3 v1 = new Vector3(3, 3, 3);
-		Vector3 v2 = new Vector3(0, 0, 0);
+		BoundingBox b1 = new BoundingBox(new Vector3(4, 4, 4), new Vector3(0, 0, 0));
+		Vector3 v1 = new Vector3(0, 0, 0);
+		Vector3 v2 = new Vector3(0, 0, 4);
+		Vector3 v3 = new Vector3(0, 4, 0);
+		Vector3 v4 = new Vector3(0, 4, 4);
+		Vector3 v5 = new Vector3(4, 0, 0);
+		Vector3 v6 = new Vector3(4, 0, 4);
+		Vector3 v7 = new Vector3(4, 4, 0);
+		Vector3 v8 = new Vector3(4, 4, 4);
 
-		//why do you need a vector to get the corner of a box??
-		assertTrue(b1.getCorner000(v1) == v2 );
+		assertEquals(b1.getCorner000(v1), v1 );
+		assertEquals(b1.getCorner001(v1), v2 );
+		assertEquals(b1.getCorner010(v1), v3 );
+		assertEquals(b1.getCorner011(v1), v4 );
+		assertEquals(b1.getCorner100(v1), v5 );
+		assertEquals(b1.getCorner101(v1), v6 );
+		assertEquals(b1.getCorner110(v1), v7 );
+		assertEquals(b1.getCorner111(v1), v8 );
+
+
+
 
 	}
 
@@ -97,10 +112,12 @@ public class BoundingBoxTest {
 		//testing if large values to small values will create a box
 		BoundingBox b1 = new BoundingBox(new Vector3(4, 4, 4), Vector3.Zero);
 		BoundingBox b2 = new BoundingBox(new Vector3(-2, -2, -2), new Vector3(2, 2, 2));
+		Vector3 v1 = new Vector3(0, 0, 0);
 
 		//set boundingbox using the function instead of vectors
 		BoundingBox b3 = new BoundingBox(b1);
-		
+		assertTrue(b1.getCenter(v1) == b3.getCenter(v1) );
+
 		//check b3 == b1 and b2 != b1 or b3
 		assertTrue(b1.contains(b3));
 		assertTrue(b1.getCenterX() == b3.getCenterX());
@@ -112,12 +129,14 @@ public class BoundingBoxTest {
 		assertTrue(b1.getWidth() == b3.getWidth());
 		assertTrue(b1.getDepth() == b2.getDepth());
 		assertTrue(b1.getHeight() == b3.getHeight());
-		
-		Vector3 v1 = new Vector3(3, 3, 3);
-		b1.getCorner000(v1);
 
-		//fix this -------------------------------------------------------------------------------------------------------------
-		assertTrue(b1.getCenter(v1) == b1.getCenter(v1) );
+		Vector3 v2 = new Vector3(-2, -2, -2);
+		Vector3 v3 = new Vector3(2, 2, 2);
+		assertEquals(b2.getMin(v1), v2);
+		assertEquals(b2.getMax(v1), v3);
+		
+		
+		
 	}
 	
 
