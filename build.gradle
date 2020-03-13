@@ -52,6 +52,8 @@ allprojects {
 
 dependencies {
     testCompile "junit:junit:4.+"
+    testCompile 'org.mockito:mockito-core:2.7.22'
+    testImplementation 'org.mockito:mockito-core:2.7.22'
 }
 
 jacoco {

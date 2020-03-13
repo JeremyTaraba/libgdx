@@ -45,7 +45,7 @@ public class RayTest {
 		r3.set(new Vector3(-2, -2, -2), new Vector3(4, 4, 4));
 		assertEquals(r2.getOrigin(), r3.getOrigin());
 
-		//cpy() is not setting the direction correctly, set() is
+		//cpy() is not setting the direction correctly, set() is broken or getDirect() could be broken
 		assertEquals(r2.getDirection(),  r3.getDirection());
 
 		//making sure the cpy is not just setting origin to (0,0,0)

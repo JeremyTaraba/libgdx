@@ -128,7 +128,6 @@ public class Ray implements Serializable {
 		final int prime = 73;
 		int result = 1;
 
-		//why is result being set based on direction and then set again on origin, this overrides it??
 		result = prime * result + this.direction.hashCode();
 		result = prime * result + this.origin.hashCode();
 		return result;

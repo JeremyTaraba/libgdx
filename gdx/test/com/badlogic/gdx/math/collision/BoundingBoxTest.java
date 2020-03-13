@@ -13,7 +13,29 @@ import org.junit.Test;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.math.Matrix4;
 
+import static org.mockito.Mockito.*;
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
+
 public class BoundingBoxTest {
+
+	//not sure how to use mocking but it's here
+
+	@Mock
+	Matrix4 m1 = new Matrix4();
+
+    /*@InjectMocks
+    private Vector3 v1;*/
+
+    @Before
+    public void setUp() throws Exception {
+
+         MockitoAnnotations.initMocks(this);
+    }
 
 	//original tests
 	@Test
@@ -135,9 +157,20 @@ public class BoundingBoxTest {
 		assertEquals(b2.getMin(v1), v2);
 		assertEquals(b2.getMax(v1), v3);
 		
-		
-		
 	}
+
 	
+
+	@Test
+	public void testMock(){
+		BoundingBox b1 = new BoundingBox(new Vector3(4, 4, 4), Vector3.Zero);
+		Matrix4 m2 = new Matrix4();
+		b1.mul(m2);
+
+		//this one fails the test with a null exception but not when we use m2
+		//b1.mul(m1);
+	
+
+	}
 
 }
